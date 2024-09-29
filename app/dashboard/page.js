@@ -29,7 +29,7 @@ const Page = () => {
   useEffect(() => {
     const fetchAvailableShoes = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/shoes", {
+        const res = await fetch("https://shoesyncv1.vercel.app/api/shoes", {
           cache: "no-store",
         });
 
@@ -52,9 +52,12 @@ const Page = () => {
   useEffect(() => {
     const fetchSoldShoes = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/shoes/soldShoes", {
-          cache: "no-store",
-        });
+        const res = await fetch(
+          "https://shoesyncv1.vercel.app/api/shoes/soldShoes",
+          {
+            cache: "no-store",
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch shoes");
