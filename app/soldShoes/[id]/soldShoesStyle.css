@@ -1,0 +1,72 @@
+.soldshoes-container {
+  height: 100%;
+  background-color: #1d1d1d;
+  border-radius: 32px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.soldshoes-container h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.soldshoes-info {
+  display: flex;
+  align-items: start;
+  gap: 70px;
+  margin-top: 30px;
+}
+
+.soldshoes-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.soldshoes-data p {
+  font-weight: bold;
+  color: #8e8e8e;
+}
+
+.soldshoes-data h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.soldshoes-input {
+  display: flex;
+  gap: 50px;
+  margin-top: 30px;
+}
+
+.soldshoes-commissions {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row; /* Align items in a row */
+  justify-content: space-between; /* Space out the player commission elements */
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+}
+
+.player {
+  flex: 1; /* Allow each player section to grow and take up equal space */
+  margin: 0 10px; /* Add some margin between player sections */
+  text-align: center; /* Center align the text */
+}
+
+.player h2 {
+  font-size: 32px;
+  color: #8e8e8e;
+  font-weight: bold;
+}
+
+.player h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.player p {
+  font-size: 24px;
+}

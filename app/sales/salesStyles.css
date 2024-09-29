@@ -1,0 +1,126 @@
+.profit-sales-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.ps-board-container {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.ps-board-row {
+  display: flex;
+  gap: 27px;
+}
+
+.ps-board {
+  width: 357px;
+  height: 250px;
+  background-color: #2a2a2a;
+  padding: 26px;
+  border-radius: 24px;
+  transition: all ease 0.3s;
+}
+
+.ps-board:hover {
+  background-color: #242424;
+}
+
+.ps-board h4 {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  opacity: 0.7;
+}
+
+.ps-board h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+
+.ps-stats {
+  height: 150px;
+}
+
+.bg-custom-green {
+  background-color: #1dda00;
+}
+
+.bg-custom-green:hover {
+  background-color: #1bcd00;
+}
+
+.bg-custom-blue {
+  background-color: #3a61ff;
+}
+
+.bg-custom-blue:hover {
+  background-color: #3558e7;
+}
+
+.bg-custom-orange {
+  background-color: #f69000;
+}
+
+.bg-custom-orange:hover {
+  background-color: #e78700;
+}
+
+.shoes-sold-headline {
+  margin-top: 24px;
+}
+
+.ps-board h5 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.ps-date-picker {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.preset-buttons {
+  margin: 10px 0;
+}
+
+.preset-buttons button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.preset-buttons button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.custom-date-range {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.custom-date-range .react-datepicker {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shops-sold-headline {
+  margin-top: 10px;
+}
+
+.ps-date-picker {
+  display: flex;
+  justify-content: start;
+}

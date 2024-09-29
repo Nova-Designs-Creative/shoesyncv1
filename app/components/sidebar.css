@@ -1,0 +1,37 @@
+.sidebar {
+  min-width: 300px;
+  background-color: var(--black);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px;
+  align-items: center;
+  gap: 50px;
+}
+
+.logo-name {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.menu-item {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 30px 20px;
+  margin: 20px 0px;
+  border-radius: 12px;
+  transition: all ease-in-out 0.2s;
+}
+
+.menu-item:hover {
+  background-color: var(--gray);
+}
+
+.menu-item.active {
+  background-color: var(--blue);
+}
+
+.menu-item.active:hover {
+  background-color: var(--blue); /* Prevent hover color change on active item */
+}

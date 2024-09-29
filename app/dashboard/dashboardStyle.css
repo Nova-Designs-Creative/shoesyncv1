@@ -1,0 +1,146 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-summary {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+  width: 90%;
+  padding: 10px 50px;
+  height: 151px;
+  border-radius: 32px;
+  padding: 24px;
+  background-color: #1d1d1d;
+
+  transition: all ease-in-out 0.3s;
+}
+
+.dashboard-summary:hover {
+  filter: drop-shadow(5px 5px 5px #4de0601b);
+}
+
+.ds-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.ds-logo {
+  height: 84px;
+  width: 84px;
+  background: rgb(211, 255, 231);
+  background: linear-gradient(
+    180deg,
+    rgba(211, 255, 231, 1) 0%,
+    rgb(120, 198, 154) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+
+.ds-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-info h4 {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.ds-info h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.ds-trend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ds-trend p {
+  font-size: 12px;
+  font-weight: medium;
+}
+
+.ds-trend-percent {
+  color: #00ac4f;
+}
+
+.divider {
+  border: 1px solid #f0f0f0; /* Style the divider border */
+  width: 1px; /* Set the width of the divider */
+  height: 80%; /* Set the height to cover its container */
+  align-self: center; /* Center align vertically within its container */
+  margin: 0 10px; /* Optional: Add margin for spacing around the divider */
+}
+
+.dh-table-item {
+  font-weight: bold;
+}
+
+.dh-table {
+  background-color: #1d1d1d;
+  color: white;
+  transition: all ease-in-out 0.3s;
+  width: 95%;
+  border-radius: 32px;
+  padding: 50px;
+  min-height: 62vh;
+
+  /* Hide scrollbar */
+  overflow: hidden;
+  overflow-y: scroll; /* Enable vertical scrolling without a scrollbar */
+}
+
+.dh-table::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.dh-table {
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.sold-btn {
+  background-color: var(--blue);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: normal;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.sold-btn:hover {
+  background-color: #5b66fe;
+}
+
+.dashboardTableHead {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.tableHeadInfo h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.tableHeadInfo p {
+  font-size: 14px;
+  color: #16c098;
+}
+
+.table-sortprice {
+  background-color: var(--blue);
+  color: white;
+}

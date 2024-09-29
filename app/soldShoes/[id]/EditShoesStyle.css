@@ -1,0 +1,201 @@
+.createShoes {
+  background-color: #1d1d1d;
+  width: 100%;
+  position: relative;
+  color: white;
+  border-radius: 32px;
+  padding: 50px;
+}
+
+.createShoes h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.choose-brand h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+/* Hide the default radio button */
+.brand-radio {
+  display: none;
+}
+
+/* Style the label to look like a button */
+.brand-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: var(--gray);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  font-size: 16px;
+  color: white;
+}
+
+/* Hover effect for better button feel */
+.brand-button:hover {
+  background-color: rgb(38, 38, 38);
+  border-color: #aaa;
+}
+
+/* Active class for selected buttons */
+.brand-button.active {
+  background-color: var(--blue);
+  color: white;
+  border-color: var(--blue);
+}
+
+/* For the custom input brand */
+.brand-custom-input {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: var(--gray);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.uppercase-input {
+  text-transform: uppercase;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: var(--gray);
+}
+
+.currency-sign {
+  margin-right: 5px;
+  font-size: 18px;
+  color: #555;
+}
+
+.currency-input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  background-color: var(--gray);
+  color: white;
+}
+
+.currency-input::placeholder {
+  color: #aaa;
+}
+
+.firstpart-create {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selectShoes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.selectShoes h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+.createShoes-price {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.createShoes-price h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+.dividerist {
+  opacity: 0.5;
+}
+
+.createShoes-more {
+  display: flex;
+  gap: 32px;
+  align-items: end;
+}
+
+.createShoes-select {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.createShoes-select h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.createShoe-btns {
+  position: absolute;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+  bottom: 80px;
+  right: 100px;
+}
+
+.createShoe-btns button {
+  width: 142px;
+  height: 56px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.close-btn {
+  background-color: #383838;
+  transition: all ease 0.3s;
+}
+
+.close-btn:hover {
+  background-color: #3838389f;
+  transition: all ease 0.3s;
+}
+
+.submit-btn {
+  background-color: var(--blue);
+  transition: all ease 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #3b48ff69;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 50px;
+  color: #383838;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: rgb(211, 38, 38);
+}
