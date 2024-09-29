@@ -33,6 +33,7 @@ const Page = () => {
   const [sortDirection, setSortDirection] = useState("asc");
   const [locationFilter, setLocationFilter] = useState("");
   const [ownerFilter, setOwnerFilter] = useState("");
+  const [loading, setLoading] = useState(true); // New loading state
 
   useEffect(() => {
     // Check authentication status
@@ -44,13 +45,17 @@ const Page = () => {
 
   useEffect(() => {
     const fetchShoes = async () => {
+      setLoading(true); // Set loading to true before fetching
       const data = await getShoes();
       setShoesInventory(data.shoes);
+      setLoading(false); // Set loading to false after fetching
     };
 
     // Only fetch shoes if the user is authenticated
     if (status === "authenticated") {
       fetchShoes();
+    } else {
+      setLoading(false); // Set loading to false if not authenticated
     }
   }, [status]);
 
@@ -87,8 +92,8 @@ const Page = () => {
     return 0;
   });
 
-  // Optionally render loading state while checking authentication
-  if (status === "loading") {
+  // Show loading state or the table
+  if (loading) {
     return <div>Loading...</div>;
   }
 
