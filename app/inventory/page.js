@@ -94,7 +94,11 @@ const Page = () => {
 
   // Show loading state or the table
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <p className="text-white text-3xl">Loading...</p>
+      </div>
+    );
   }
 
   return (

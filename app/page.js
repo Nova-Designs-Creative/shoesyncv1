@@ -51,7 +51,11 @@ export default function Home() {
   };
 
   if (status === "loading") {
-    return <div>Loading...</div>; // Optional loading indicator
+    return (
+      <div>
+        <p className="text-white text-3xl">Loading...</p>
+      </div>
+    ); // Optional loading indicator
   }
 
   if (status === "authenticated") {
