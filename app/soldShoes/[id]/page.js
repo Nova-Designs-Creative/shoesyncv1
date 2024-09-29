@@ -4,7 +4,7 @@ import SoldShoesForm from "./SoldShoesForm";
 //fetch data from id
 const fetchShoesById = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/shoes/${id}`, {
+    const res = await fetch(`https://shoesyncv1.vercel.app/api/shoes/${id}`, {
       cache: "no-store",
     });
 

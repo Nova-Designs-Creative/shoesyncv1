@@ -31,7 +31,7 @@ import DeleteBtn from "./DeleteBtn";
 // Fetch data function
 const getShoesList = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/shoelist", {
+    const res = await fetch("https://shoesyncv1.vercel.app/api/shoelist", {
       cache: "no-store",
     });
 
@@ -103,7 +103,7 @@ const EditShoesForm = ({
 
     try {
       // Send a PUT request to update the shoe record
-      const res = await fetch(`http://localhost:3000/api/shoes/${id}`, {
+      const res = await fetch(`https://shoesyncv1.vercel.app/api/shoes/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

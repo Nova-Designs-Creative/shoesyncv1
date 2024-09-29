@@ -29,7 +29,7 @@ import { useRouter } from "next/navigation";
 // Fetch data function
 const getShoesList = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/shoelist", {
+    const res = await fetch("https://shoesyncv1.vercel.app/api/shoelist", {
       cache: "no-store",
     });
 
@@ -77,7 +77,7 @@ const Page = () => {
 
     try {
       // Send a POST request to create a new shoe record
-      const res = await fetch("http://localhost:3000/api/shoes", {
+      const res = await fetch("https://shoesyncv1.vercel.app/api/shoes", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

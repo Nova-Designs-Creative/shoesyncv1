@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 // Fetch data function
 const getSoldShoes = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/shoes/soldShoes", {
+    const res = await fetch("https://shoesyncv1.vercel.app/api/shoes/soldShoes", {
       cache: "no-store",
     });
 

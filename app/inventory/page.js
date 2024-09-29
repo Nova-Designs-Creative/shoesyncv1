@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const getShoes = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/shoes", {
+    const res = await fetch("https://shoesyncv1.vercel.app/api/shoes", {
       cache: "no-store",
     });
 

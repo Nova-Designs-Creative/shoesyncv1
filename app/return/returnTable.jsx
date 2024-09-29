@@ -76,7 +76,7 @@ const ReturnTable = ({ shoes }) => {
 
     // Make the PUT request to update the shoe's availability
     try {
-      const response = await fetch(`/api/shoes/${selectedShoe._id}`, {
+      const response = await fetch(`https://shoesyncv1.vercel.app/api/shoes/${selectedShoe._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -137,13 +137,16 @@ const SoldShoesForm = ({
         newDateSold: dateSold, // Automatically set date sold
       };
 
-      const putResponse = await fetch(`http://localhost:3000/api/shoes/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(putData),
-      });
+      const putResponse = await fetch(
+        `https://shoesyncv1.vercel.app/api/shoes/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(putData),
+        }
+      );
 
       if (!putResponse.ok) {
         throw new Error("Failed to update shoe availability");
