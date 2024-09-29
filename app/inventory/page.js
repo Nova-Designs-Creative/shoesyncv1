@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import InventoryHead from "./components/InventoryHead";
 import InventoryTable from "./components/InventoryTable";
 import { useRouter } from "next/navigation";
+import Loading from "./loading";
 
 const getShoes = async () => {
   try {
@@ -96,7 +97,7 @@ const Page = () => {
   if (loading) {
     return (
       <div>
-        <p className="text-white text-3xl">Loading...</p>
+        <Loading />
       </div>
     );
   }
