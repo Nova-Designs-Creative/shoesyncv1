@@ -84,9 +84,9 @@ const SoldShoesForm = ({
       }
     } else if (formLocation === "Random Walk In") {
       // Scenario 5: Random Walk In
-      newCommissions.fitz = newProfit * 0.4;
-      newCommissions.bryan = newProfit * 0.3;
-      newCommissions.ashley = newProfit * 0.3;
+      newCommissions.fitz = newProfit * 0.8;
+      newCommissions.bryan = newProfit * 0.2;
+      newCommissions.ashley = newProfit * 0.2;
     } else if (formLocation === "Marketplace") {
       // Scenario 6: Marketplace
       newCommissions[owner.toLowerCase()] = newProfit;
