@@ -5,12 +5,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ReturnTable from "./returnTable";
 
+// Function to fetch shoes data
 const getShoes = async () => {
   try {
     const res = await fetch(
       "https://shoesyncv1.vercel.app/api/shoes/soldShoes",
       {
-        cache: "no-store",
+        cache: "no-store", // Ensures fresh data on each fetch
       }
     );
 
@@ -31,11 +32,13 @@ const Page = () => {
   const router = useRouter();
   const [shoes, setShoes] = useState([]);
 
+  // Fetch shoes and update state
   const fetchShoes = useCallback(async () => {
     const fetchedShoes = await getShoes();
     setShoes(fetchedShoes);
   }, []);
 
+  // Redirect unauthenticated users
   useEffect(() => {
     if (status === "unauthenticated") {
       alert("Please log in");
@@ -43,10 +46,19 @@ const Page = () => {
     }
   }, [status, router]);
 
+  // Fetch shoes on mount and set up polling
   useEffect(() => {
+    let interval;
+
     if (status === "authenticated") {
-      fetchShoes();
+      fetchShoes(); // Initial fetch
+      interval = setInterval(() => {
+        fetchShoes(); // Poll every 10 seconds
+      }, 10000); // 10 seconds polling
     }
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
   }, [status, fetchShoes]);
 
   if (status === "loading") {
@@ -59,6 +71,7 @@ const Page = () => {
 
   return (
     <div className="returnTable-container">
+      {/* Pass shoes data and fetchShoes function to ReturnTable */}
       <ReturnTable shoes={shoes} refreshShoes={fetchShoes} />
     </div>
   );
