@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
 import SoldBtn from "./SoldBtn";
 import {
   Pagination,
@@ -27,35 +26,31 @@ const modalStyles = {
   },
   content: {
     color: "white",
-    backgroundColor: "#1d1d1d", // Dark background
+    backgroundColor: "#1d1d1d",
     border: "none",
     borderRadius: "8px",
     padding: "50px",
     height: "500px",
     width: "500px",
-    display: "flex", // Add flex display
-    justifyContent: "start", // Center items horizontally
-
-    flexDirection: "column", // Stack items vertically
-    margin: "auto", // Center the modal
+    display: "flex",
+    justifyContent: "start",
+    flexDirection: "column",
+    margin: "auto",
   },
 };
 
-const ReturnTable = ({ shoes }) => {
+const ReturnTable = ({ shoes, refreshShoes }) => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedShoe, setSelectedShoe] = useState(null);
 
-  // Calculate total pages
   const totalPages = Math.ceil(shoes.length / itemsPerPage);
 
-  // Handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // Get current items
   const currentItems = shoes.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -74,7 +69,6 @@ const ReturnTable = ({ shoes }) => {
   const handleSold = async () => {
     if (!selectedShoe) return;
 
-    // Make the PUT request to update the shoe's availability
     try {
       const response = await fetch(
         `https://shoesyncv1.vercel.app/api/shoes/${selectedShoe._id}`,
@@ -88,11 +82,8 @@ const ReturnTable = ({ shoes }) => {
       );
 
       if (response.ok) {
-        // Close the modal
         closeModal();
-
-        // Refresh the page
-        window.location.reload(); // Reload the page
+        refreshShoes(); // Call the refreshShoes function passed from the parent
       } else {
         console.error("Failed to update shoe availability");
       }
@@ -183,12 +174,11 @@ const ReturnTable = ({ shoes }) => {
         </TableBody>
       </Table>
 
-      {/* Modal */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={modalStyles}
-        ariaHideApp={false} // Hide app to avoid screen reading issues
+        ariaHideApp={false}
       >
         <h2 className="text-5xl font-bold mb-5">Are you sure?</h2>
         {selectedShoe && (

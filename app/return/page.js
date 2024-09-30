@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ReturnTable from "./returnTable";
 
-// Fetch data function
 const getShoes = async () => {
   try {
     const res = await fetch(
@@ -20,10 +19,10 @@ const getShoes = async () => {
     }
 
     const data = await res.json();
-    return data.shoes || []; // Ensure we always return an array
+    return data.shoes || [];
   } catch (error) {
     console.error("Error loading shoes: ", error);
-    return []; // Return an empty array in case of error
+    return [];
   }
 };
 
@@ -31,6 +30,11 @@ const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [shoes, setShoes] = useState([]);
+
+  const fetchShoes = useCallback(async () => {
+    const fetchedShoes = await getShoes();
+    setShoes(fetchedShoes);
+  }, []);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -40,27 +44,22 @@ const Page = () => {
   }, [status, router]);
 
   useEffect(() => {
-    const fetchShoes = async () => {
-      const fetchedShoes = await getShoes();
-      setShoes(fetchedShoes);
-    };
-
     if (status === "authenticated") {
       fetchShoes();
     }
-  }, [status]);
+  }, [status, fetchShoes]);
 
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
   if (status === "unauthenticated") {
-    return null; // or a message, if you prefer
+    return null;
   }
 
   return (
     <div className="returnTable-container">
-      <ReturnTable shoes={shoes} />
+      <ReturnTable shoes={shoes} refreshShoes={fetchShoes} />
     </div>
   );
 };
