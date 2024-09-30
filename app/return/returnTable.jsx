@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
 import SoldBtn from "./SoldBtn";
 import {
   Pagination,
@@ -27,35 +26,34 @@ const modalStyles = {
   },
   content: {
     color: "white",
-    backgroundColor: "#1d1d1d", // Dark background
+    backgroundColor: "#1d1d1d",
     border: "none",
     borderRadius: "8px",
     padding: "50px",
     height: "500px",
     width: "500px",
-    display: "flex", // Add flex display
-    justifyContent: "start", // Center items horizontally
-
-    flexDirection: "column", // Stack items vertically
-    margin: "auto", // Center the modal
+    display: "flex",
+    justifyContent: "start",
+    flexDirection: "column",
+    margin: "auto",
   },
 };
 
-const ReturnTable = ({ shoes }) => {
+const ReturnTable = ({ shoes, updateShoes }) => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedShoe, setSelectedShoe] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Calculate total pages
   const totalPages = Math.ceil(shoes.length / itemsPerPage);
 
-  // Handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // Get current items
   const currentItems = shoes.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -69,12 +67,16 @@ const ReturnTable = ({ shoes }) => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedShoe(null);
+    setSuccessMessage("");
+    setErrorMessage("");
   };
 
   const handleSold = async () => {
     if (!selectedShoe) return;
 
-    setIsLoading(true); // Add a loading state
+    setIsLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
 
     try {
       const response = await fetch(
@@ -89,23 +91,19 @@ const ReturnTable = ({ shoes }) => {
       );
 
       if (response.ok) {
-        // Optimistic update
-        setShoes((prevShoes) =>
-          prevShoes.map((shoe) =>
-            shoe._id === selectedShoe._id
-              ? { ...shoe, availability: "AVAIL" }
-              : shoe
-          )
+        const updatedShoes = shoes.map((shoe) =>
+          shoe._id === selectedShoe._id
+            ? { ...shoe, availability: "AVAIL" }
+            : shoe
         );
-        closeModal();
-        // Show success message
+        updateShoes(updatedShoes);
         setSuccessMessage("Shoe successfully marked as returned");
+        setTimeout(closeModal, 2000);
       } else {
         throw new Error("Failed to update shoe availability");
       }
     } catch (error) {
       console.error("Error:", error);
-      // Show error message to user
       setErrorMessage("Failed to mark shoe as returned. Please try again.");
     } finally {
       setIsLoading(false);
@@ -194,12 +192,11 @@ const ReturnTable = ({ shoes }) => {
         </TableBody>
       </Table>
 
-      {/* Modal */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={modalStyles}
-        ariaHideApp={false} // Hide app to avoid screen reading issues
+        ariaHideApp={false}
       >
         <h2 className="text-5xl font-bold mb-5">Are you sure?</h2>
         {selectedShoe && (
@@ -210,16 +207,24 @@ const ReturnTable = ({ shoes }) => {
             <p>Size: {selectedShoe.size} US</p>
           </div>
         )}
+        {successMessage && (
+          <div className="text-green-500 mb-4">{successMessage}</div>
+        )}
+        {errorMessage && (
+          <div className="text-red-500 mb-4">{errorMessage}</div>
+        )}
         <div className="flex justify-end space-x-4 absolute bottom-0 right-0 m-6">
           <button
             onClick={handleSold}
             className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-500 transition-all 0.3s"
+            disabled={isLoading}
           >
-            Yes, Mark as return
+            {isLoading ? "Processing..." : "Yes, Mark as return"}
           </button>
           <button
             onClick={closeModal}
             className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500 transition-all 0.3s"
+            disabled={isLoading}
           >
             Cancel
           </button>
