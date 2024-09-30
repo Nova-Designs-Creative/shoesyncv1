@@ -87,6 +87,9 @@ const SoldShoesForm = ({
       newCommissions.fitz = newProfit * 0.4;
       newCommissions.bryan = newProfit * 0.3;
       newCommissions.ashley = newProfit * 0.3;
+    } else if (formLocation === "Marketplace") {
+      // Scenario 6: Marketplace
+      newCommissions[owner.toLowerCase()] = newProfit;
     }
 
     setCommissions(newCommissions);
@@ -256,6 +259,7 @@ const SoldShoesForm = ({
               <SelectItem value="Store">Store</SelectItem>
               <SelectItem value="Page">Page</SelectItem>
               <SelectItem value="Random Walk In">Random Walk In</SelectItem>
+              <SelectItem value="Marketplace">Marketplace</SelectItem>
             </SelectContent>
           </Select>
         </div>
