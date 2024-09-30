@@ -1,49 +1,62 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import ReturnTable from "./returnTable";
-import { useSession } from "next-auth/react"; // Import useSession
-import { useRouter } from "next/navigation"; // Import useRouter
 
 // Fetch data function
 const getShoes = async () => {
   try {
-    const res = await fetch("https://shoesyncv1.vercel.app/api/shoes/soldShoes", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://shoesyncv1.vercel.app/api/shoes/soldShoes",
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch shoes");
     }
 
-    return res.json();
+    const data = await res.json();
+    return data.shoes || []; // Ensure we always return an array
   } catch (error) {
-    console.log("Error loading shoes: ", error);
-    return { shoes: [] }; // Return an empty array in case of error
+    console.error("Error loading shoes: ", error);
+    return []; // Return an empty array in case of error
   }
 };
 
 const Page = () => {
-  // Capitalize the component name
-  const { data: session, status } = useSession(); // Use useSession to get the session data
-  const router = useRouter(); // Initialize router
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [shoes, setShoes] = useState([]);
 
   useEffect(() => {
-    // Check authentication status
     if (status === "unauthenticated") {
       alert("Please log in");
-      router.push("/"); // Redirect to home page
+      router.push("/");
     }
-  }, [status]);
+  }, [status, router]);
 
   useEffect(() => {
     const fetchShoes = async () => {
-      const data = await getShoes();
-      setShoes(data?.shoes);
+      const fetchedShoes = await getShoes();
+      setShoes(fetchedShoes);
     };
 
-    fetchShoes();
-  }, []);
+    if (status === "authenticated") {
+      fetchShoes();
+    }
+  }, [status]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "unauthenticated") {
+    return null; // or a message, if you prefer
+  }
 
   return (
     <div className="returnTable-container">
@@ -52,4 +65,4 @@ const Page = () => {
   );
 };
 
-export default Page; // Export the capitalized component
+export default Page;

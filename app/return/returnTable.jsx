@@ -74,27 +74,41 @@ const ReturnTable = ({ shoes }) => {
   const handleSold = async () => {
     if (!selectedShoe) return;
 
-    // Make the PUT request to update the shoe's availability
+    setIsLoading(true); // Add a loading state
+
     try {
-      const response = await fetch(`https://shoesyncv1.vercel.app/api/shoes/${selectedShoe._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newAvailability: "AVAIL" }),
-      });
+      const response = await fetch(
+        `https://shoesyncv1.vercel.app/api/shoes/${selectedShoe._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newAvailability: "AVAIL" }),
+        }
+      );
 
       if (response.ok) {
-        // Close the modal
+        // Optimistic update
+        setShoes((prevShoes) =>
+          prevShoes.map((shoe) =>
+            shoe._id === selectedShoe._id
+              ? { ...shoe, availability: "AVAIL" }
+              : shoe
+          )
+        );
         closeModal();
-
-        // Refresh the page
-        window.location.reload(); // Reload the page
+        // Show success message
+        setSuccessMessage("Shoe successfully marked as returned");
       } else {
-        console.error("Failed to update shoe availability");
+        throw new Error("Failed to update shoe availability");
       }
     } catch (error) {
       console.error("Error:", error);
+      // Show error message to user
+      setErrorMessage("Failed to mark shoe as returned. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
