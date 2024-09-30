@@ -82,8 +82,8 @@ const SoldShoesForm = ({
         newCommissions[owner.toLowerCase()] = newProfit * 0.5;
         newCommissions[formSeller.toLowerCase()] = newProfit * 0.5;
       }
-    } else if (owner === formSeller) {
-      // Scenario 1: Store, owner is seller
+    } else if (owner === "Random Walk In") {
+      // Scenario 5: Random Walk In
       newCommissions[owner.toLowerCase()] = newProfit * 0.8;
       players.forEach((player) => {
         if (player.toLowerCase() !== owner.toLowerCase()) {
