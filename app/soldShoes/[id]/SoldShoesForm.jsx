@@ -82,11 +82,14 @@ const SoldShoesForm = ({
         newCommissions[owner.toLowerCase()] = newProfit * 0.5;
         newCommissions[formSeller.toLowerCase()] = newProfit * 0.5;
       }
-    } else if (formLocation === "Random Walk In") {
-      // Scenario 5: Random Walk In
-      newCommissions.fitz = newProfit * 0.8;
-      newCommissions.bryan = newProfit * 0.1;
-      newCommissions.ashley = newProfit * 0.1;
+    } else if (owner === formSeller) {
+      // Scenario 1: Store, owner is seller
+      newCommissions[owner.toLowerCase()] = newProfit * 0.8;
+      players.forEach((player) => {
+        if (player.toLowerCase() !== owner.toLowerCase()) {
+          newCommissions[player.toLowerCase()] = newProfit * 0.1;
+        }
+      });
     } else if (formLocation === "Marketplace") {
       // Scenario 6: Marketplace
       newCommissions[owner.toLowerCase()] = newProfit;
