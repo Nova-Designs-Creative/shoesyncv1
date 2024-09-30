@@ -1,23 +1,12 @@
-import mongoose from "mongoose";
+import connectMongoDB from "@/lib/mongodb";
+import Sneaker from "@/models/shoes";
+import { NextResponse } from "next/server";
 
-let isConnected = false;
+export async function GET() {
+  await connectMongoDB();
+  const shoes = await Sneaker.find({ availability: "SOLD" });
 
-const connectMongoDB = async () => {
-  if (isConnected) {
-    return;
-  }
-
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    isConnected = true;
-    console.log("MongoDB connected");
-  } catch (error) {
-    console.error("MongoDB connection error", error);
-    throw new Error("Failed to connect to MongoDB");
-  }
-};
-
-export default connectMongoDB;
+  const response = NextResponse.json({ shoes });
+  response.headers.set("Cache-Control", "no-store"); // No cache
+  return response;
+}
