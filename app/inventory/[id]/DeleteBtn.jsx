@@ -9,9 +9,12 @@ const DeleteBtn = ({ id }) => {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/api/shoes?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://shoesyncv1.vercel.app/api/shoes?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to delete the shoe.");
